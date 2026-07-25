@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flask CRUD Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <div>
+          <h1>Flask CRUD Dashboard</h1>
+          <p>Manage records with pagination, search, sort, and filters.</p>
+        </div>
+        <a class="button primary" href="{{ url_for('new_item') }}">Create item</a>
+      </header>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <section class="flash-list">
+            {% for message in messages %}
+              <div class="flash">{{ message }}</div>
+            {% endfor %}
+          </section>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
